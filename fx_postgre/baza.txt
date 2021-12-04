@@ -1,0 +1,65 @@
+-- Database: budjet
+
+-- DROP DATABASE budjet;
+
+CREATE DATABASE budjet
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Russian_Russia.1251'
+    LC_CTYPE = 'Russian_Russia.1251'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+DROP TABLE  IF EXISTS public.dohod;	
+DROP TABLE  IF EXISTS public.region;
+DROP TABLE  IF EXISTS public.vid;
+
+CREATE TABLE public.region
+(
+    id SERIAL PRIMARY KEY,
+	kod  varchar(20) ,
+    name varchar(200) 
+);
+
+INSERT INTO public.region (kod, name) VALUES 
+('01', 'region1'),
+('02', 'region2'),
+('03', 'region3'),
+('04', 'region4');
+
+CREATE TABLE public.vid
+(
+    id SERIAL PRIMARY KEY,
+	kod  varchar(20) ,
+    name varchar(200) 
+);
+
+INSERT INTO public.vid (kod, name) VALUES 
+('2501', 'vid1'),
+('8302', 'vid2'),
+('1503', 'vid3'),
+('9404', 'vid4');
+
+--Basically, money has its (very limited) uses. 
+--The Postgres Wiki suggests to largely avoid it, 
+--except for those narrowly defined cases. 
+--The advantage over numeric is performance.
+
+CREATE TABLE public.dohod
+(
+    id SERIAL PRIMARY KEY,
+	region_id integer NOT NULL,
+	vid_id integer NOT NULL,
+	misyac int ,
+    rik int ,
+	grn numeric(20, 2) ,
+	FOREIGN KEY (region_id) REFERENCES region (id) MATCH FULL,
+	FOREIGN KEY (vid_id) REFERENCES vid (id) MATCH FULL
+);
+
+INSERT INTO public.dohod (region_id, vid_id, misyac, rik, grn) VALUES 
+(1, 3, 6, 2021, 250),
+(2, 1, 5, 2021, 1000),
+(1, 3, 6, 2021, 500),
+(3, 2, 5, 2021, 2000);

@@ -1,0 +1,83 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import sample.Region?>
+<?import sample.FormattedTableCellFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<GridPane fx:controller="sample.RegionController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <FlowPane orientation="HORIZONTAL" vgap="2" hgap="2" >
+        <FlowPane orientation="HORIZONTAL">
+        <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+            <menus>
+                <Menu text="Файл">
+                    <items>
+                        <MenuItem text="Назад" onAction="#handleExitAction" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </FlowPane>
+
+        <FlowPane orientation="HORIZONTAL">
+        <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <columns>
+                <TableColumn fx:id="idColumn" text="Ідентифікатор"  prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                    <cellFactory>
+                        <FormattedTableCellFactory alignment="center">
+                        </FormattedTableCellFactory>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn text="Код"  prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="kod" />
+                    </cellValueFactory>
+                    <cellFactory>
+                        <FormattedTableCellFactory alignment="center">
+                        </FormattedTableCellFactory>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn text="Назва" prefWidth="400">
+                    <cellValueFactory><PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                    <cellFactory>
+                        <FormattedTableCellFactory alignment="center">
+                        </FormattedTableCellFactory>
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+
+            <sortOrder>
+                <fx:reference source="idColumn"/>
+            </sortOrder>
+        </TableView>
+        <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0"
+              GridPane.rowIndex="2">
+            <TextField fx:id="idField" promptText="Ідентифікатор"
+                       prefWidth="90" editable="false" />
+            <TextField fx:id="kodField" promptText="Код"
+                       prefWidth="90"/>
+            <TextField fx:id="nameField" promptText="Назва"
+                       prefWidth="150"/>
+            <Button text="Додати" onAction="#addRow"/>
+            <Button text="Редагувати" onAction="#editRow"/>
+            <Button text="Замінити" onAction="#updateRow"/>
+            <Button text="Видалити" onAction="#deleteRow"/>
+        </HBox>
+        </FlowPane>
+    </FlowPane>
+</GridPane>

@@ -1,0 +1,11 @@
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\BDConnector.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Controller.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Dohod.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\DohodController.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\FormattedTableCellFactory.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Main.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Region.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\RegionController.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Vid.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\VidController.java
+C:\Users\PC\IdeaProjects\fx_postgre\src\sample\Zvit1.java

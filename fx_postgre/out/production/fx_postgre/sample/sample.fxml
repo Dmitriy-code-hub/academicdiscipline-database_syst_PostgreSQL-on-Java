@@ -1,0 +1,135 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import sample.FormattedTableCellFactory?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="TOP_LEFT" hgap="10" vgap="10">
+<FlowPane orientation="VERTICAL" vgap="2" hgap="2"
+          xmlns:fx="http://javafx.com/fxml" alignment="TOP_LEFT"
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="0">
+    <FlowPane orientation="HORIZONTAL" vgap="2" hgap="2" >
+        <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+            <menus>
+                <Menu text="Файл">
+                    <items>
+<!--
+                        <MenuItem text="New"/>
+                        <MenuItem text="Open"/>
+                        <MenuItem text="Save"/>
+                        <MenuItem text="Save As"/>
+                        <SeparatorMenuItem  />
+                        -->
+                        <MenuItem text="Вихід" onAction="#handleExitAction" fx:id="menuExit"/>
+                    </items>
+                </Menu>
+                <Menu text="Довідник">
+                    <items>
+                        <MenuItem text="Регіон" onAction="#handleRegionAction" fx:id="menuRegion"/>
+                        <MenuItem text="Вид надходження" onAction="#handleVidAction" fx:id="menuVid"/>
+                        <MenuItem text="Доходи" onAction="#handleDohodAction" fx:id="menuDohod"/>
+                    </items>
+                </Menu>
+                <Menu text="Інформація">
+                    <items>
+                       <!--  <MenuItem text="Search" disable="true"/>
+                        <MenuItem text="Online Manual" visible="false"/>
+                        <SeparatorMenuItem />
+                        -->
+                        <MenuItem id="menuAbout" text="Імітація бази даних виконання Державного бюджету України в розрізі регіонів та найменувань згідно з бюджетною класифікацією" onAction="#handleAboutAction"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </FlowPane>
+</FlowPane>
+      <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0"
+            GridPane.rowIndex="1">
+       <Label text = "Початок періоду" />
+
+        <TextField fx:id="misyacField1" promptText="Місяць"
+                   prefWidth="50"/>
+        <TextField fx:id="rikField1" promptText="Рік"
+                   prefWidth="150"/>
+          <Label text = "Кінець періоду" />
+
+          <TextField fx:id="misyacField2" promptText="Місяць"
+                     prefWidth="50"/>
+          <TextField fx:id="rikField2" promptText="Рік"
+                     prefWidth="150"/>
+    </HBox>
+    <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0"
+          GridPane.rowIndex="2">
+
+        <ComboBox fx:id="regionCombo" prefHeight="21.0" prefWidth="300.0" >
+    </ComboBox>
+
+               <Button text="Сума доходів по видах" onAction="#sumVyd"/>
+           </HBox>
+
+    <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0"
+          GridPane.rowIndex="3">
+
+
+        <ComboBox fx:id="vidCombo" prefHeight="21.0" prefWidth="300.0" >
+        </ComboBox>
+
+               <Button text="Сума доходів по регіонах" onAction="#sumRegion"/>
+    </HBox>
+
+
+<!--//sozdaem tablizu-->
+        <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="4">
+        <columns>
+            <TableColumn fx:id="idColumn" text="Сума надходжень" prefWidth="150">
+                <cellValueFactory><PropertyValueFactory property="grn" />
+                </cellValueFactory>
+                <cellFactory>
+                    <FormattedTableCellFactory alignment="center">
+                    </FormattedTableCellFactory>
+                </cellFactory>
+            </TableColumn>
+            <TableColumn text="Код"  prefWidth="150">
+                <cellValueFactory><PropertyValueFactory property="code" />
+                </cellValueFactory>
+                <cellFactory>
+                    <FormattedTableCellFactory alignment="center">
+                    </FormattedTableCellFactory>
+                </cellFactory>
+            </TableColumn>
+            <TableColumn text="Назва" prefWidth="500">
+                <cellValueFactory><PropertyValueFactory property="name" />
+                </cellValueFactory>
+                <cellFactory>
+                    <FormattedTableCellFactory alignment="center">
+                    </FormattedTableCellFactory>
+                </cellFactory>
+            </TableColumn>
+
+        </columns>
+
+        <sortOrder>
+            <fx:reference source="idColumn"/>
+        </sortOrder>
+    </TableView>
+
+
+
+
+
+</GridPane>
